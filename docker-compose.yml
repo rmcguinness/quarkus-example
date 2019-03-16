@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+  db:
+    container_name: example_cdi_db
+    image: postgres
+    restart: 'no'
+    volumes:
+      - example_db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: 'example'
+      POSTGRES_PASSWORD: 'eX4mpl3!'
+      POSTGRES_DB: 'example'
+      PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - 5432:5432
+volumes:
+  example_db: {}
+

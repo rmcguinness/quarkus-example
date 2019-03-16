@@ -19,10 +19,8 @@ package com.rationaldevelopers.examples;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.UUID;
-
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.containsString;
 
 @QuarkusTest
 public class GreetingResourceTest {
@@ -30,22 +28,9 @@ public class GreetingResourceTest {
   @Test
   public void testEndPoint() {
     given()
-        .when().get("/greeting")
+        .when().get("/api/users/test_load")
         .then()
         .statusCode(200)
-        .body(is("Yo!"));
+        .body(containsString("test_load"));
   }
-
-
-  @Test
-  public void testEndPoint2() {
-    final String uuid = UUID.randomUUID().toString();
-    given()
-        .when().get("/greeting/" + uuid)
-        .then()
-        .statusCode(200)
-        .body(is("hello: " + uuid));
-  }
-
-
 }

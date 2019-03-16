@@ -16,12 +16,24 @@
 
 package com.rationaldevelopers.examples;
 
-import javax.enterprise.context.ApplicationScoped;
+import com.rationaldevelopers.examples.concurrent.ManagedThreadLocal;
+import com.rationaldevelopers.examples.service.CategoryService;
+import org.junit.jupiter.api.Test;
 
-@ApplicationScoped
-public class GreetingService {
+import javax.inject.Inject;
 
-  public String sayHello(final String appendix) {
-    return "hello: " + appendix;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class CategoryServiceTest extends AbstractTest {
+
+  @Inject
+  CategoryService categoryService;
+
+  @Test
+  public void testCategory() {
+    System.out.println(ManagedThreadLocal.getCurrentUser());
+    categoryService.create("Test");
+    assertEquals(1, categoryService.find().size());
   }
+
 }

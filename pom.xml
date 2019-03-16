@@ -24,6 +24,18 @@
     <artifactId>quarkus-example</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <organization>
+        <name>Ryan McGuinness</name>
+        <url>https://www.rationaldevelopers.com/</url>
+    </organization>
+
     <properties>
         <version.quarkus>0.11.0</version.quarkus>
         <version.surefire>2.22.1</version.surefire>
@@ -44,14 +56,57 @@
         </dependencies>
     </dependencyManagement>
 
+    <scm>
+        <url>https://github.com/rmcguinness/quarkus-example</url>
+        <connection>scm:git:git@github.com:rmcguinness/quarkus-example.git</connection>
+        <developerConnection>scm:git:git@github.com:rmcguinness/quarkus-example.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <email>ryan@rationaldevelopers.com</email>
+            <name>Ryan McGuinness</name>
+            <url>https://github.com/rmcguinness</url>
+            <id>rmcguinness</id>
+        </developer>
+    </developers>
+
     <dependencies>
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-resteasy</artifactId>
+            <artifactId>quarkus-arc</artifactId>
         </dependency>
+
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-arc</artifactId>
+            <artifactId>quarkus-resteasy-jsonb</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-jwt</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-hibernate-orm</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-jdbc-postgresql</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-narayana-jta</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.8</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
