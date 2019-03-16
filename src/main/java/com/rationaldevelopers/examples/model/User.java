@@ -44,6 +44,13 @@ public class User extends Persistent {
   public static final String QRY_FIND_BY_USER_NAME = "User.findByName";
   public static final String QRY_FIND_BY_USER_NAME_AND_PASSWORD = "User.findByNameAndPassword";
 
+  @JsonbProperty("id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_generator")
+  @SequenceGenerator(name="task_generator", allocationSize=50, sequenceName = "seq_user", initialValue = 100)
+  @Column(name = "id", updatable = false, nullable = false)
+  private Long id;
+
   /**
    * The name of the user
    */
@@ -72,6 +79,14 @@ public class User extends Persistent {
   public User(String name, String password) {
     this.name = name;
     this.password = password;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public String getName() {

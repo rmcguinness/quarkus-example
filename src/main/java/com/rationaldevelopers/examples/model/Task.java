@@ -18,6 +18,7 @@ package com.rationaldevelopers.examples.model;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
 
+import javax.json.bind.annotation.JsonbDateFormat;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElementWrapper;
@@ -36,6 +37,13 @@ import java.util.*;
 public class Task extends Persistent {
   public static final String QRY_FIND_BY_CATEGORY = "Task.findByCategory";
 
+  @JsonbProperty("id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_generator")
+  @SequenceGenerator(name="task_generator", allocationSize=50, sequenceName = "seq_task", initialValue = 100)
+  @Column(name = "id", updatable = false, nullable = false)
+  private Long id;
+
   @JsonbProperty("category")
   @ManyToOne(targetEntity = Category.class, optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "cat_id")
@@ -47,16 +55,19 @@ public class Task extends Persistent {
 
   @JsonbProperty("st_dt")
   @Temporal(TemporalType.DATE)
+  @JsonbDateFormat(DATE_FORMAT)
   @Column(name="st_dt")
   private Date startDate = Calendar.getInstance().getTime();
 
   @JsonbProperty("pdd")
   @Temporal(TemporalType.DATE)
+  @JsonbDateFormat(DATE_FORMAT)
   @Column(name = "pdd")
   private Date plannedDoneDate = Calendar.getInstance().getTime();
 
   @JsonbProperty("cp_dt")
   @Temporal(TemporalType.DATE)
+  @JsonbDateFormat(DATE_FORMAT)
   @Column(name = "cp_dt")
   private Date completedDate;
 
@@ -80,6 +91,14 @@ public class Task extends Persistent {
   public Task(String name, String description) {
     this.name = name;
     this.description = description;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public Category getCategory() {

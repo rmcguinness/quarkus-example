@@ -26,6 +26,14 @@ import java.util.Objects;
 @Entity
 @Table(name = "nts")
 public class Note extends Persistent {
+
+  @JsonbProperty("id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_generator")
+  @SequenceGenerator(name="task_generator", allocationSize=50, sequenceName = "seq_note", initialValue = 100)
+  @Column(name = "id", updatable = false, nullable = false)
+  private Long id;
+
   @JsonbProperty("task")
   @ManyToOne(targetEntity = Task.class, optional = false)
   @JoinColumn(name = "task_id")
@@ -44,6 +52,14 @@ public class Note extends Persistent {
   public Note(final String note) {
     this();
     this.note = note;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 
   public Task getTask() {

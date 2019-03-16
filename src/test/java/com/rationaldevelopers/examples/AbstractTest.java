@@ -38,7 +38,7 @@ public class AbstractTest {
   public void before() throws Exception {
     Optional<User> existing = userService.authenticate("test", "test");
     if (!existing.isPresent()) {
-      User newUser = new User("test", "test");
+      User newUser = new User("test", User.hashPassword("test"));
       newUser.setVerified(true);
       userService.save(newUser);
       new ManagedThreadLocal(Optional.of(newUser));

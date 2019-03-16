@@ -17,10 +17,13 @@
 package com.rationaldevelopers.examples;
 
 import com.rationaldevelopers.examples.concurrent.ManagedThreadLocal;
+import com.rationaldevelopers.examples.model.Category;
 import com.rationaldevelopers.examples.service.CategoryService;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -32,8 +35,11 @@ public class CategoryServiceTest extends AbstractTest {
   @Test
   public void testCategory() {
     System.out.println(ManagedThreadLocal.getCurrentUser());
-    categoryService.create("Test");
-    assertEquals(1, categoryService.find().size());
+    List<Category> all = categoryService.find();
+    if (all == null || all.size() == 0) {
+      categoryService.create("Test");
+      assertEquals(1, categoryService.find().size());
+    }
   }
 
 }

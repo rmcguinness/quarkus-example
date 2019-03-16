@@ -16,16 +16,15 @@
 
 package com.rationaldevelopers.examples.service;
 
-import jdk.jfr.Name;
-
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.List;
 import java.util.Optional;
 
-@Name("dataService")
+@Named("dataService")
 @Singleton
 public class DataService {
   @Inject

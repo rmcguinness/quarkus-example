@@ -35,6 +35,13 @@ import java.util.Set;
 public class Category extends Persistent {
   public static final String QRY_FIND_BY_USER = "Category.findByUser";
 
+  @JsonbProperty("id")
+  @Id
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_generator")
+  @SequenceGenerator(name="task_generator", allocationSize=50, sequenceName = "seq_cat", initialValue = 100)
+  @Column(name = "id", updatable = false, nullable = false)
+  private Long id;
+
   @JsonbProperty("name")
   @Column(name = "nm", length = 128, nullable = false)
   private String name;
@@ -63,12 +70,20 @@ public class Category extends Persistent {
     this.user = user;
   }
 
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
   public String getName() {
     return name;
   }
 
   public void setName(String name) {
-    this.name = Objects.nonNull(name) && !name.isBlank() ? name.trim() : null;
+    this.name = Objects.nonNull(name) && !name.trim().isEmpty() ? name.trim() : null;
   }
 
   public User getUser() {

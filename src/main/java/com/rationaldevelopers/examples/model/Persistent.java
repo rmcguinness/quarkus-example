@@ -17,25 +17,19 @@
 package com.rationaldevelopers.examples.model;
 
 import io.quarkus.runtime.annotations.RegisterForReflection;
-import org.hibernate.annotations.GenericGenerator;
 
+import javax.json.bind.annotation.JsonbDateFormat;
 import javax.json.bind.annotation.JsonbProperty;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+
 @RegisterForReflection
 @MappedSuperclass
 public abstract class Persistent implements Serializable {
-  private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-
-  @JsonbProperty("id")
-  @Id
-  @GeneratedValue(generator = "uuid")
-  @GenericGenerator(name = "uuid", strategy = "org.hibernate.id.UUIDGenerator")
-  @Column(name = "id", length = 36, nullable = false, columnDefinition = "CHAR(36)")
-  private String id;
+  static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
 
   @JsonbProperty("ver")
   @Version
@@ -43,25 +37,19 @@ public abstract class Persistent implements Serializable {
   private int version;
 
   @JsonbProperty("cr_dt")
+  @JsonbDateFormat(DATE_FORMAT)
   @Temporal(TemporalType.TIMESTAMP)
   @Column(name = "cr_dt", nullable = false)
   private Date created;
 
   @JsonbProperty("up_dt")
   @Temporal(TemporalType.TIMESTAMP)
+  @JsonbDateFormat(DATE_FORMAT)
   @Column(name = "up_dt", nullable = false)
   private Date updated;
 
   public static String getDateFormat() {
     return DATE_FORMAT;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public void setId(String id) {
-    this.id = id;
   }
 
   public int getVersion() {

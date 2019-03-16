@@ -51,10 +51,7 @@ public class UserEndPoint {
   public Response list(@Context SecurityContext ctx, final @PathParam("uid") String uid) {
     final Principal caller =  ctx.getUserPrincipal();
     final String name = caller == null ? "anonymous" : caller.getName();
-    System.out.println(name);
-
     final List<User> users = userService.list(uid);
-
     return Response.ok(users.toArray()).build();
   }
 }
