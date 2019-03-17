@@ -40,6 +40,7 @@
         <version.quarkus>0.11.0</version.quarkus>
         <version.surefire>2.22.1</version.surefire>
         <!-- This must be at Java 8 in order to support GraalVM -->
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.target>8</maven.compiler.target>
         <maven.compiler.source>8</maven.compiler.source>
     </properties>
