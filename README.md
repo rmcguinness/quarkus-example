@@ -41,13 +41,14 @@ implementation and lack of reflection.
 
 ## Build
 
-1. Start the docker database `docker-compose start db` from the project root.
-2. Start the server: `mvn clean compile quarkus:dev`
-3. Test: `curl http://localhost:8080/api/users/test_load`
+1. Start the docker database `docker-compose up --no-start db & docker-compose start db` from the project root.
+2. Start the docker open trace instance: `docker run -e COLLECTOR_ZI:PKIN_HTTP_PORT=9411 -p 5775:5775/udp -p 6831:6831/udp -p 6832:6832/udp -p 5778:5778 -p 16686:16686 -p 14268:14268 -p 9411:9411 jaegertracing/all-in-one:latest`
+3. Start the server: `mvn clean compile quarkus:dev`
+4. Test: `curl http://localhost:8080/api/users/test_load`
 
 Output (Similar):
 ```json
-[{"cr_dt":"2019-03-15T18:00:07.331Z[UTC]","id":"b27b1a34-bd32-4454-a54e-9ff16f32abce","up_dt":"2019-03-15T18:00:07.331Z[UTC]","ver":0,"name":"test_load","verified":true}]
+[{"cr_dt":"2019-03-15T18:00:07.331Z","up_dt":"2019-03-15T18:00:07.331Z","ver":0,"id":1,"name":"test_load","verified":true}]
 ```
 
 ### Standard JAR
@@ -62,4 +63,12 @@ This requires graalvm be installed and on your path.
 
 ```
 mvn clean package -Pnative
+```
+
+### Test
+```
+for i in {1..1000}
+do
+curl http://localhost:8080/api/users/test_load
+done
 ```
