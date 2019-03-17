@@ -16,6 +16,19 @@ implementation and lack of reflection.
 
 ## Setup
 
+### Linux
+
+1. Install docker-ce and docker-compose
+2. Install Maven into /opt/java/maven
+3. Install [GraalVM](https://www.graalvm.org/downloads/) into /opt/graalvm
+4. Make sure your developer tools are up-to-date
+	1. sudo apt install build-essential
+	2. sudo apt install zlib1g-dev
+5. Alter your .bashrc or .zshrc
+	1. `export GRAALVM_HOME=/opt/graalvm`
+    	2. `export JAVA_HOME=$GRAALVM_HOME`
+    	3. `export PATH=$JAVA_HOME/bin:$PATH`
+
 ### OS X
 
 1. Install Docker
