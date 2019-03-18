@@ -14,6 +14,14 @@ should not be in production code bases.
 Member variables are package level variable in order to facilitate the restricted CDI
 implementation and lack of reflection.
 
+## Fun Stats
+
+* Deployment Size: 57MB
+* Start Up time: 0.1356 sec
+* Initial Memory footprint: 12MB
+* Max Memory Footprint: 256MB
+* Build Time: ~ 3min (WSL); 1.5min (Linux); 2min (Mac)
+
 ## Setup
 
 ### Linux
