@@ -22,6 +22,9 @@ implementation and lack of reflection.
 * Max Memory Footprint: 256MB
 * Build Time: ~ 3min (WSL); 1.5min (Linux); 2min (Mac)
 
+### Modules:
+[agroal, cdi, hibernate-orm, jdbc-postgresql, narayana-jta, resteasy, resteasy-jsonb, security, smallrye-jwt]
+
 ## Setup
 
 ### Linux
