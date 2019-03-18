@@ -1,4 +1,6 @@
 dependency-reduced-pom.xml
+ObjectStore
+quarkus.log
 
 # Ignore this resource as it's built by angular
 src/main/resources/static
