@@ -44,10 +44,11 @@ implementation and lack of reflection.
 
 1. Install Docker
 2. Install Maven into /opt/java/maven
-3. Install [GraalVM](https://www.graalvm.org/downloads/) into /opt/graalvm
+3. Install [GraalVM](https://www.graalvm.org/downloads/) into `/Library/Java/JavaVirtualMachines/graalvm`
 4. Alter .bash_profile or .zshrc to include
-    1. `export GRAALVM_HOME=/opt/graalvm`
-    2. `export JAVA_HOME=$GRAALVM_HOME`
+    1. `export GRAALVM_HOME=/Library/Java/JavaVirutalMachines/graalvm`
+    2. `export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)` - This only works if you don't have java 1.8 installed.
+        1. alternative: `export JAVA_HOME=$GRAALVM_HOME/Contents/Home`
     3. `export PATH=$JAVA_HOME/bin:$PATH`
 
 ### Windows 10 [LATEST]
