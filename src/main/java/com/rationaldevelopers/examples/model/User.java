@@ -42,6 +42,8 @@ import java.util.Objects;
 public class User extends Persistent {
   private static final Logger LOGGER = LoggerFactory.getLogger(User.class);
   public static final String QRY_FIND_BY_USER_NAME = "User.findByName";
+
+  @SuppressWarnings("squid:S2068")
   public static final String QRY_FIND_BY_USER_NAME_AND_PASSWORD = "User.findByNameAndPassword";
 
   @JsonbProperty("id")

@@ -47,10 +47,20 @@ public class UserEndPoint {
 
   @PermitAll
   @GET
+  @Path("/{uid}/exists")
+  public Response exists(@Context SecurityContext ctx, final @PathParam("uid") String uid) {
+    final List<User> users = userService.list(uid);
+    if (!users.isEmpty()) {
+      return Response.ok().build();
+    } else {
+      return Response.status(404).build();
+    }
+  }
+
+  @PermitAll
+  @GET
   @Path("/{uid}")
   public Response list(@Context SecurityContext ctx, final @PathParam("uid") String uid) {
-    final Principal caller =  ctx.getUserPrincipal();
-    final String name = caller == null ? "anonymous" : caller.getName();
     final List<User> users = userService.list(uid);
     return Response.ok(users.toArray()).build();
   }
